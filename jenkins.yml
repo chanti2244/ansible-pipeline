@@ -8,33 +8,4 @@
         name: openjdk-11-jdk
         state: present
         update_cache: yes
-    - name: ensure the jenkins apt repository key is installed
-      apt_key:
-        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-        state: present
-
-    - name: ensure the repository is configured
-      apt_repository:
-        repo: deb https://pkg.jenkins.io/debian-stable binary/
-        state: present
-
-    - name: ensure jenkins is installed
-      apt:
-        name: jenkins
-        update_cache: yes
-
-    - name: ensure jenkins is running
-      service:
-        name: jenkins
-        state: started
-    - name: Install git
-      apt:
-        name: git
-        state: present
-        update_cache: no
-    - name: Install maven
-      apt:
-        name: maven
-        state: present
-        update_cache: no
-...
+    
