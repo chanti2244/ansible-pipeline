@@ -1,6 +1,6 @@
 ---
 - name: Install jenkins by using ansible
-  hosts: all
+  hosts: dev
   become: yes
   tasks:
     - name: Install Java using Ansible
