@@ -33,7 +33,7 @@
 
   - name: download & install tomcat
     unarchive:
-      src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
+      src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
       dest: /opt/tomcat
       remote_src: yes
   - name: Change ownership of tomcat directory
@@ -55,8 +55,8 @@
         [Service]
         Type=forking
         User=tomcat
-        ExecStart=/opt/tomcat/apache-tomcat-9.0.71/bin/startup.sh
-        ExecStop=/opt/tomcat/apache-tomcat-9.0.71/bin/shutdown.sh
+        ExecStart=/opt/tomcat/apache-tomcat-9.0.73/bin/startup.sh
+        ExecStop=/opt/tomcat/apache-tomcat-9.0.73/bin/shutdown.sh
         User=tomcat
         Restart=on-abort
         TimeoutSec=600
@@ -67,9 +67,12 @@
   - name: Reload the SystemD to re-read configurations
     systemd:
       daemon-reload: yes
-  - name: Enable the tomcat service and start
+  - name: Enable the tomcat service
     systemd:
       name: tomcat
       enabled: yes
-      state: started
+  - name: Start the tomcat service
+    service:
+      name: tomcat
+      state: restarted
 ...
